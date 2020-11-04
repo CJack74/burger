@@ -1,5 +1,6 @@
 const connection = require("../config/connection.js");
 
+//// Helper function to convert object key/value pairs to SQL syntax
 function objToSql(ob) {
   
     let arr = [];
