@@ -18,7 +18,7 @@ function objToSql(ob) {
     //cb represents the anonymous function being passed from server.js
     
     selectAll: function(table, cb) {
-      let queryString = "SELECT * FROM" + table + ";";
+      let queryString = "SELECT * FROM " + table + ";";
       connection.query(queryString, function(err, result) {
         if (err) {
           throw err;
