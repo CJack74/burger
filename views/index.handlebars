@@ -3,17 +3,17 @@
         <div class="col-lg-4">
             <div>
                 <ul>
-                    {{!-- {{#each burger}} --}}
-                    {{!-- {{#unless this.devoured}} --}}
+                    {{#each burger}}
+                    {{#unless this.devoured}}
                     <li>
-                        {{!-- {{this.burger_name}} --}}
+                        {{this.burger_name}}
                         <form action="burger/update/{{this.id}}?_method=PUT" method="POST">
                             <input type="hidden" name="devoured" value="true">
                             <button type="submit">Devour</button>
                         </form>
                     </li>
-                    {{!-- {{/unless}} --}}
-                    {{!-- {{/each}} --}}
+                    {{/unless}}
+                    {{/each}}
                 </ul>
             </div>
         </div>
@@ -32,15 +32,17 @@
         <div class="col-lg-4">
             <h2>Devoured burger</h2>
             <ul>
-                {{!-- {{#each burger}} --}}
-                {{!-- {{#if this.devoured}} --}}
+                {{#each burger}}
+                {{#if this.devoured}}
                 <li>
-                    {{!-- {{this.burger_name}} --}}
+                    {{this.burger_name}}
                     <form action="burger/update/{{this.id}}?_method=PUT" method="POST">
-                        <input type="hidden" name="devoured" value="false"/>
+                        <input type="hidden" name="devoured" value="false" />
                         <button type="submit">Put Back</button>
                     </form>
                 </li>
+                {{/if}}
+                {{/each}}
             </ul>
         </div>
     </div>
