@@ -1,34 +1,46 @@
 var express = require("express");
+
 var router = express.Router();
-var bodyParser = require('body-parser');
 var burger = require("../models/burger.js");
 
+//GET route for index
 router.get("/", function (req, res) {
-	res.redirect("/burger");
+    res.redirect("/burgers");
 });
 
-router.get("/burger", function(req, res){
-	burger.all(function(data){
-		let hbsObject = {burger: data};
-		console.log(hbsObject);
-		res.render("index", hbsObject);
-	});
+router.get("/burgers", function (req, res) {
+    burger.all(function (burgerData) {
+        //will return burger data to handlebars
+        res.render("index", {
+            burger_data: burgerData
+        });
+    });
 });
 
-router.post("/burger/create", function (req, res){
-	burger.create("burger_name", req.body.burger_name, function(){
-		res.redirect("/burger");
-	})
-})
+//POST route for created burger
+router.post("/burgers/create", function (req, res) {
+	console.log("result from post route: ")
+	console.log(res);
+	console.log("################################");
+	console.log("request from post route: ")
+	console.log(req);
+	console.log("################################")
+    // burger.create(req.body.burger_name, function (result) {
+	// // 	console.log("result from burger.create: ")
+	// // 	console.log(result);
+	// // 	console.log("################################")
+    //    res.redirect("/");
+    // });
+});
 
-router.put("/burger/update/:id", function (req, res){
-    let condition = "id = " + req.params.id;
-
-	console.log("condition", condition);
-
-	burger.update({devoured: req.body.devoured}, condition, function () {
-		res.redirect("/burger");
-	});
+//PUT route
+router.put("/burgers/:id", function (req, res) {
+    burger.update(req.params.id, function (result) {
+        // updates mysql and logs in console
+        console.log(result);
+        //Allows page to reload
+        res.sendStatus(200);
+    });
 });
 
 module.exports = router;
