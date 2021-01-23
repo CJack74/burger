@@ -8,6 +8,8 @@ const exphbs = require("express-handlebars");
 
 // Sets up the Express App
 const app = express();
+app.use(bodyParser.urlencoded({ extended : true}))
+app.use(bodyParser.json())
 const PORT = process.env.PORT || 8080;
 
 // // Serve static content for the app from the "public" directory in the application directory.
