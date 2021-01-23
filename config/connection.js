@@ -13,6 +13,8 @@ connection.connect(function(err) {
         console.error("error connecting: " + err.stack);
         return;
     }
+    connection.query(`CREATE TABLE IF NOT EXISTS burger (id int NOT NULL AUTO_INCREMENT, burger_name varchar(50) NOT NULL, devoured BOOLEAN,  PRIMARY KEY (id));`)
+
     console.log("connected as id" + connection.threadId);
 });
 
